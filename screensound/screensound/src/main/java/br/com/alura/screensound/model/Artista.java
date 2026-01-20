@@ -18,6 +18,11 @@ public class Artista {
     @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Musica> musicaList = new ArrayList<>();
 
+    public Artista(String nomeArtista, TipoArtista tipo) {
+        this.nome = nomeArtista;
+        this.tipo = tipo;
+    }
+
 
     public Long getId() {
         return id;

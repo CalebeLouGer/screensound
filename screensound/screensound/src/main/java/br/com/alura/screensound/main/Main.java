@@ -1,11 +1,13 @@
 package br.com.alura.screensound.main;
 
 import br.com.alura.screensound.model.Artista;
+import br.com.alura.screensound.model.TipoArtista;
 import br.com.alura.screensound.repository.ArtistaRepository;
 import br.com.alura.screensound.service.ConsultaChatGPT;
 import br.com.alura.screensound.service.ConsumoApi;
 import br.com.alura.screensound.service.ConverteDados;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -62,10 +64,20 @@ public class Main {
         }
     }
     private void cadastrarArtista() {
-        System.out.println("Informe o Nome do Artista: ");
-        var nomeArtista = leitura.nextLine();
-//        Artista artista = new Artista(nomeArtista);
+        var cadastrarNovoArtista = "S";
+        while (cadastrarNovoArtista.equalsIgnoreCase("s")){
+            System.out.println("Informe o Nome do Artista: ");
+            var nomeArtista = leitura.nextLine();
+            System.out.println("Informe o Tipo do Artista: 'Solo','Dupla','Banda'");
+            var tipo = leitura.nextLine();
 
+            TipoArtista tipoArtista = TipoArtista.valueOf(tipo.toUpperCase());
+            Artista artista = new Artista(nomeArtista,tipoArtista);
+            repository.save(artista);
+
+            System.out.println("Deseja cadastrar um novo Artista? (S/N)");
+            cadastrarNovoArtista = leitura.nextLine();
+        }
     }
 
     private void cadastrarMusica() {
