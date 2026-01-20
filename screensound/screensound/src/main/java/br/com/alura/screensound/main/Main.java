@@ -1,5 +1,7 @@
 package br.com.alura.screensound.main;
 
+import br.com.alura.screensound.model.Artista;
+import br.com.alura.screensound.repository.ArtistaRepository;
 import br.com.alura.screensound.service.ConsultaChatGPT;
 import br.com.alura.screensound.service.ConsumoApi;
 import br.com.alura.screensound.service.ConverteDados;
@@ -11,12 +13,17 @@ public class Main {
     private ConsumoApi consumo = new ConsumoApi();
     private ConverteDados conversor = new ConverteDados();
     private ConsultaChatGPT consultaChatGPT = new ConsultaChatGPT();
+    private ArtistaRepository repository;
+
+    public Main(ArtistaRepository repository) {
+        this.repository = repository;
+    }
 
     public void exibirMenu(){
         var opcao = -1;
         while (opcao != 0){
             var menu = """
-                    ==================================
+                    ======-Screen Sound Músicas-======
                     [1] Cadastrar Artistas
                     [2] Cadastrar Músicas
                     [3] Lista Música
@@ -55,6 +62,9 @@ public class Main {
         }
     }
     private void cadastrarArtista() {
+        System.out.println("Informe o Nome do Artista: ");
+        var nomeArtista = leitura.nextLine();
+//        Artista artista = new Artista(nomeArtista);
 
     }
 
