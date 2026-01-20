@@ -15,12 +15,17 @@ public class Artista {
     private String nome;
     @Enumerated(EnumType.STRING)
     private TipoArtista tipo;
+    @Enumerated(EnumType.STRING)
+    private Categoria genero;
     @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Musica> musicaList = new ArrayList<>();
 
-    public Artista(String nomeArtista, TipoArtista tipo) {
+    public Artista(){}
+
+    public Artista(String nomeArtista, TipoArtista tipo, Categoria categoriaGenero) {
         this.nome = nomeArtista;
         this.tipo = tipo;
+        this.genero = categoriaGenero;
     }
 
 
@@ -38,6 +43,14 @@ public class Artista {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Categoria getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Categoria genero) {
+        this.genero = genero;
     }
 
     public List<Musica> getMusicaList() {
@@ -58,10 +71,8 @@ public class Artista {
 
     @Override
     public String toString() {
-        return "Artista{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", musicaList=" + musicaList +
-                '}';
+        return "Artista = " +
+                "Nome: " + nome + " | " +
+                "Músicas: " + musicaList;
     }
 }

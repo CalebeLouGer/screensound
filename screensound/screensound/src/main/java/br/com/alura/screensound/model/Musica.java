@@ -9,10 +9,14 @@ public class Musica {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
-    @Enumerated(EnumType.STRING)
-    private Categoria genero;
     @ManyToOne
     private Artista artista;
+
+    public Musica(){}
+
+    public Musica(String nomeMusica) {
+        this.titulo = nomeMusica;
+    }
 
     public Long getId() {
         return id;
@@ -30,14 +34,6 @@ public class Musica {
         this.titulo = titulo;
     }
 
-    public Categoria getGenero() {
-        return genero;
-    }
-
-    public void setGenero(Categoria genero) {
-        this.genero = genero;
-    }
-
     public Artista getArtista() {
         return artista;
     }
@@ -48,8 +44,6 @@ public class Musica {
 
     @Override
     public String toString() {
-        return  "titulo='" + titulo + '\'' +
-                ", genero=" + genero +
-                ", artista=" + artista;
+        return "Nome: " + titulo;
     }
 }
